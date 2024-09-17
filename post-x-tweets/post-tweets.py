@@ -47,8 +47,6 @@ class ExtractDataFromHTML:
         # Close the browser
         driver.quit()
 
-        # return df
-
     def save_to_csv(self):
         df = self.df
 
@@ -56,6 +54,6 @@ class ExtractDataFromHTML:
         df.to_csv("/home/christopher/Documents/workspace/py-projects/post-x-tweets/data/cpi.csv")
 
 
-ExtractData = ExtractDataFromHTML("https://sslecal2.investing.com/?columns=exc_actual,exc_forecast,exc_previous&features=datepicker,timezone&importance=3&countries=5&calType=week&timeZone=8&lang=1")
-ExtractData.extract_data()
-ExtractData.save_to_csv()
+# ExtractData = ExtractDataFromHTML("https://sslecal2.investing.com/?columns=exc_actual,exc_forecast,exc_previous&features=datepicker,timezone&importance=3&countries=5&calType=week&timeZone=8&lang=1")
+# ExtractData.extract_data()
+# ExtractData.save_to_csv()
