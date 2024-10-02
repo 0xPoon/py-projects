@@ -1,4 +1,5 @@
 # (1) Extract information from a website using Selenium, using selenium (e.g. CPI data coming out bi-weekly or monthly)
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,6 +10,7 @@ from io import StringIO
 # Set global options
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
+pd.set_option('display.width',-1)
 
 class ExtractDataFromHTML:
 
@@ -52,8 +54,3 @@ class ExtractDataFromHTML:
             print("DataFrame is empty. No data to save to CSV.")
 
         return self.df
-
-# Create an instance of ExtractDataFromHTML
-# ExtractData = ExtractDataFromHTML("https://sslecal2.investing.com/?columns=exc_actual,exc_forecast,exc_previous&features=datepicker,timezone&importance=3&countries=5&calType=week&timeZone=8&lang=1")
-# ExtractData.extract_data()
-# ExtractData.save_to_csv()

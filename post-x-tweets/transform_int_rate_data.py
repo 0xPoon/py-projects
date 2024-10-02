@@ -1,9 +1,8 @@
 # (2) Conduct Transformation on data: make it so data is in a proper tabular format
-# Run 'extract_cpi_data.py', obtain df
-# Ingest df into TransformData()
+
 import pandas as pd
-from extract_int_rate_data import ExtractDataFromHTML
 from datetime import datetime
+from extract_int_rate_data import ExtractDataFromHTML
 
 # Set global options
 pd.set_option('display.max_columns', None)
@@ -25,11 +24,6 @@ class TransformData:
 
         # df.to_csv('/home/christopher/Documents/workspace/py-projects/post-x-tweets/data/cpi_amended.csv')
         return df
-
-        # # for i in range(0, len(df.index)):
-        # #     first_cell_data = df.iloc[i][0]
-        # #     if first_cell_data == 'nan':
-        # #         print(i, first_cell_data)
 
     def transform_date_format(self):
         df = self.remove_null_rows()
@@ -75,18 +69,6 @@ class TransformData:
         df = self.fill_down_date()
 
         int_rate_df = df[df['Event'].str.contains("Fed Interest Rate Decision")]
-        print(int_rate_df.head())
+        # print(int_rate_df.head())
         return int_rate_df
 
-
-# Call ExtractDataFromHTML from 'extract_cpi_data.py'
-Extracted_DF = ExtractDataFromHTML("https://sslecal2.investing.com/?columns=exc_actual,exc_forecast,exc_previous&features=datepicker,timezone&importance=3&countries=5&calType=week&timeZone=8&lang=1")
-Extracted_DF.extract_data()
-data = Extracted_DF.save_to_csv()       # Save original df to 'data'
-
-# Create instance of TransformData
-Transform_Data = TransformData(data)
-Transform_Data.remove_null_rows()
-Transform_Data.transform_date_format()
-Transform_Data.fill_down_date()
-Transform_Data.extract_filtered_df()
